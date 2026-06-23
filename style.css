@@ -893,6 +893,114 @@ ul {
     color: var(--primary);
 }
 
+/* Semesters Section & Cards */
+.semesters-section {
+    background-color: var(--bg-primary);
+}
+
+.semesters-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.semester-card {
+    background-color: var(--bg-secondary);
+    padding: 30px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: var(--transition-normal);
+}
+
+.semester-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-hover);
+}
+
+.sem-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.sem-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.sem-header span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.sem-body {
+    flex-grow: 1;
+    margin-bottom: 24px;
+}
+
+.sem-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sem-courses li {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sem-courses li i {
+    color: var(--secondary);
+    font-size: 0.95rem;
+}
+
+.sem-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+}
+
+.sem-btn:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+@media (max-width: 1024px) {
+    .semesters-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .semesters-grid {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
+
 /* ==========================================================================
    Contact Section
    ========================================================================== */
