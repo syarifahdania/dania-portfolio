@@ -145,28 +145,35 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             formFeedback.style.display = 'none';
 
-            // Get form values for client simulation
             const name = document.getElementById('form-name').value;
-            const email = document.getElementById('form-email').value;
-            const message = document.getElementById('form-message').value;
+            const actionUrl = contactForm.getAttribute('action');
 
-            // Simulate form submission to backend (API call)
-            setTimeout(() => {
-                try {
-                    // Success Simulation
+            // Submit form to endpoint (Formspree)
+            fetch(actionUrl, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
                     formFeedback.className = 'form-feedback success';
                     formFeedback.innerHTML = `<strong>Thank you, ${name}!</strong> Your message has been sent successfully. I will get back to you shortly.`;
-                    
-                    // Reset Form
                     contactForm.reset();
-                } catch (error) {
+                } else {
                     formFeedback.className = 'form-feedback error';
-                    formFeedback.textContent = 'Oops! Something went wrong. Please try again later.';
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+                    formFeedback.textContent = 'Oops! There was a problem submitting your form. Please verify your form ID.';
                 }
-            }, 1200); // 1.2 second network lag simulation
+            })
+            .catch(error => {
+                formFeedback.className = 'form-feedback error';
+                formFeedback.textContent = 'Oops! Something went wrong. Please check your network and try again.';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+            });
         });
     }
 });
